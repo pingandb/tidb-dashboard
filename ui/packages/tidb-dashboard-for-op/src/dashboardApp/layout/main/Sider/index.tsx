@@ -14,6 +14,7 @@ import { store, useIsFeatureSupport } from '@pingcap/tidb-dashboard-lib'
 function useAppMenuItem(registry, appId, title?: string, hideIcon?: boolean) {
   const { t } = useTranslation()
   const app = registry.apps[appId]
+  console.log('id', appId, app)
   if (!app) {
     return null
   }
@@ -127,6 +128,7 @@ function Sider({
 
   const menuItems = [
     useAppMenuItem(registry, 'overview'),
+    useAppMenuItem(registry, 'metrics'),
     useAppMenuItem(registry, 'cluster_info'),
     // topSQL
     useAppMenuItem(registry, 'statement'),
@@ -167,6 +169,7 @@ function Sider({
     }
   }, [defaultCollapsed])
 
+  console.log('=========menuItems', menuItems)
   return (
     <animated.div style={transSider}>
       <Layout.Sider
